@@ -1,0 +1,60 @@
+[
+    {
+        "path": "/test",
+        "name": "test",
+        "componentPath": "@/peanut/layouts",
+        "meta": {
+            "title": "待办事项",
+            "isTop":"false",
+            "icon":"todoList"
+        },
+        "children": [
+            {
+                "path": "todolist",
+                "name": "todolist",
+                "componentPath": "@/views/todoList",
+                "meta": {
+                    "title": "待办事项"
+                }
+            },
+            {
+                "path": "info",
+                "name": "info",
+                "componentPath": "@/views/information",
+                "meta": {
+                    "title": "个人介绍"
+                }
+            }
+        ]
+    },
+    {
+        "path": "/sysConfig",
+        "name": "sysConfig",
+        "componentPath": "@/peanut/layouts",
+        "meta": {
+            "title": "系统设置",
+            "isTop":"true",
+            "icon":"systemConfig"
+        },
+        "children": [
+            {
+                "path": "sysMenu",
+                "name": "sysMenu",
+                "componentPath": "@/peanut/views/sys/sysMenu",
+                "meta": {
+                    "title": "系统菜单管理",
+                    "icon":"menuConfig"
+                }
+            },
+            {
+                "path": "sysDict",
+                "name": "sysDict",
+                "componentPath": "@/peanut/views/sys/sysDict",
+                "meta": {
+                    "title": "系统字典管理",
+                    "icon":"sysDict"
+                }
+            }
+        ]
+    }
+]
