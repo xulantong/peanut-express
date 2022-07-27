@@ -60,8 +60,8 @@ app.post("/changePassword", (request, response) => {
             return console.log("读取失败！");
         } else {
             let originData = {
-                loginId:JSON.parse(data).loginId,
-                password:request.body.newPassword
+                loginId: JSON.parse(data).loginId,
+                password: request.body.newPassword
             }
             fs.writeFile('./data/sys/userInfo.json', JSON.stringify(originData), err => {
                 console.log(err);
@@ -70,27 +70,40 @@ app.post("/changePassword", (request, response) => {
     })
 
     return response.send({
-        code:200,
-        msg:"修改成功",
+        code: 200,
+        msg: "修改成功",
         result: null,
-        success:true
+        success: true
     });
 })
 app.get("/getMenuTree", (request, response) => {
     response.setHeader("Access-Control-Allow_origin", '*')
     response.setHeader("cache-Control", "no-store, no-cache, max-age=0")
-    fs.readFile('./data/sys/routes.json', (err,data) => {
-       if(err){
-        return console.log("读取失败！");
-       }else{
-        return response.send({
-            code:200,
-            msg:"",
-            result: JSON.parse(data),
-            success:true
-        });
-       }
+    fs.readFile('./data/sys/routes.json', (err, data) => {
+        if (err) {
+            return console.log("读取失败！");
+        } else {
+            return response.send({
+                code: 200,
+                msg: "",
+                result: JSON.parse(data),
+                success: true
+            });
+        }
     })
+})
+app.post("/changeMenuTree", (request, response) => {
+    response.setHeader("Access-Control-Allow_origin", '*')
+    response.setHeader("cache-Control", "no-store, no-cache, max-age=0")
+    fs.writeFile('./data/sys/routes.json', JSON.stringify(request.body), err => {
+        console.log(err);
+    })
+    return response.send({
+        code: 200,
+        msg: "修改成功",
+        result: null,
+        success: true
+    });
 })
 
 
