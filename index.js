@@ -18,6 +18,7 @@ app.use('/sys',require("./api/system"))
 app.use('/information',require("./api/information"))
 app.use('/sysDict',require("./api/sysDict"))
 app.use('/dictValue',require("./api/dictValue"))
+app.use('/epidemic',require("./api/epidemic"))
 //4.监听服务端口
 app.listen(7676, () => {
     console.log("服务已经启动，7676端口监听中。。。");
