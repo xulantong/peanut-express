@@ -6,6 +6,7 @@ const bodyParser = require("body-parser")
 const fs = require("fs")
 //4.引入dayjs
 const dayjs = require("dayjs")
+const jwt = require("jsonwebtoken")
 
 //2.创建应用对象
 
@@ -22,10 +23,11 @@ app.post("/login", (request, response) => {
         } else {
             let originData = JSON.parse(data)
             if (originData.loginId === request.body.loginId && originData.password === request.body.password) {
+                let token = jwt.sign(originData,"peanut")
                 return response.send({
                     code: 200,
                     result: {
-                        token: "37289173921738hgdwfkjh7238137",
+                        token,
                         msg: "登陆成功"
                     }
                 })

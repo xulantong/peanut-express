@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 const fs = require("fs")
 //4.引入dayjs
 const dayjs = require("dayjs")
-
+const jwt = require("jsonwebtoken")
 //2.创建应用对象
 
 const app = express()
@@ -19,6 +19,8 @@ app.use(bodyParser.json())
 app.get('/getCard', (request, response) => {
     response.setHeader("Access-Control-Allow_origin", '*')
     response.setHeader("cache-Control", "no-store, no-cache, max-age=0")
+    let token = request.headers.token
+    console.log(jwt.verify(token, "peanut"));
     fs.readFile("./data/todo/cardConfig.json", (err, data1) => {
         if (err) {
             return console.log("读取失败！");
@@ -58,12 +60,12 @@ app.post('/getList', (request, response) => {
         if (err) {
             return console.log("读取失败！");
         }
-        let originData = JSON.parse(data).filter(item => item.workCode === request.body.activateCard).slice((request.body.currentPage-1)*request.body.pageSize,request.body.currentPage*request.body.pageSize)
+        let originData = JSON.parse(data).filter(item => item.workCode === request.body.activateCard).slice((request.body.currentPage - 1) * request.body.pageSize, request.body.currentPage * request.body.pageSize)
         let result = {
             result: originData,
             rowCount: JSON.parse(data).filter(item => item.workCode === request.body.activateCard).length
         }
-            return response.send(JSON.stringify(result))
+        return response.send(JSON.stringify(result))
     })
 })
 
